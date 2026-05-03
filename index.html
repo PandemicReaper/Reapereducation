@@ -1,585 +1,421 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reaper Education — Code Unchained</title>
-  <meta name="description" content="Reaper Education is a 100% free coding platform for students and schools. Build real engineers, not tutorial watchers." />
-  
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" type="image/png" href="/favicon.png" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Reaper Education — Learn to Code. Prove It.</title>
+  <meta name="description" content="Free coding quizzes for 10 programming languages. 100 questions. Instant feedback. Built for students and schools."/>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="icon" type="image/png" href="favicon.png"/>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════
-     NAVIGATION
-══════════════════════════════════════ -->
-<nav id="main-nav">
-  <div class="container nav-inner">
-    <a href="#hero" class="nav-logo">
-      <div class="nav-logo-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 2L4 7l8 5 8-5-8-5zM4 12l8 5 8-5M4 17l8 5 8-5"/></svg>
+<!-- ══ NAV ══ -->
+<nav id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a class="nav-logo" onclick="showPage('home')" href="#">
+        <div class="nav-logo-box">🔥</div>
+        <span class="nav-logo-text">Reaper</span>
+      </a>
+      <div class="nav-links">
+        <button onclick="showPage('quizzes')">Quizzes</button>
+        <button onclick="goTerminal()">Terminal</button>
+        <button onclick="scrollSec('how-it-works')">How It Works</button>
+        <button onclick="scrollSec('schools')">For Schools</button>
       </div>
-      <span class="nav-logo-text">Reaper</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#philosophy">Philosophy</a></li>
-      <li><a href="#curriculum">Curriculum</a></li>
-      <li><a href="#terminal-demo">Terminal</a></li>
-      <li><a href="#instructors">Instructors</a></li>
-      <li><a href="#schools">For Schools</a></li>
-    </ul>
-    <button class="nav-cta" onclick="scrollToSection('enroll')">
-      Enroll Free
-      <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-    </button>
+      <div class="nav-actions">
+        <button class="btn-nav-terminal" onclick="goTerminal()">⌗ Terminal</button>
+        <button class="btn-nav-enroll" onclick="scrollSec('section-enroll')">Enroll Free →</button>
+      </div>
+    </div>
   </div>
 </nav>
 
-<!-- ══════════════════════════════════════
-     HERO
-══════════════════════════════════════ -->
-<section class="hero" id="hero">
-  <div class="hero-bg-radial"></div>
-  <div class="hero-bg-blur"></div>
-  <div class="container">
-    <div class="hero-grid">
-      <div>
-        <div class="hero-badge fade-in">
-          <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          <span>100% Free — No Credit Card Required</span>
-        </div>
-        <h1 class="hero-h1 fade-in fade-in-delay-1">
-          Code<br>
-          <span class="gradient">Unchained.</span>
-        </h1>
-        <p class="hero-desc fade-in fade-in-delay-2">
-          We don't just teach syntax. We build engineers. Reaper Education is a completely free coding platform designed to take students from zero to job-ready — used and trusted by schools worldwide.
-        </p>
-        <div class="hero-btns fade-in fade-in-delay-3">
-          <button class="btn-primary" onclick="scrollToSection('enroll')">
-            Start Free
-            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-          </button>
-          <button class="btn-outline" onclick="scrollToSection('curriculum')">
-            View Curriculum
-          </button>
-        </div>
-        <div class="hero-social-proof fade-in fade-in-delay-4">
-          <div class="avatar-stack">
-            <div class="avatar"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-            <div class="avatar"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-            <div class="avatar"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-            <div class="avatar"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-          </div>
-          <div class="proof-text"><strong>14,000+</strong> students enrolled<br>across 300+ schools</div>
-        </div>
-      </div>
+<!-- ══════════════════════════
+     HOME PAGE
+══════════════════════════ -->
+<div id="page-home" class="page active">
 
-      <div class="terminal-wrap fade-in fade-in-delay-2">
-        <div class="terminal">
-          <div class="terminal-header">
-            <div class="terminal-dots">
-              <div class="dot dot-r"></div>
-              <div class="dot dot-y"></div>
-              <div class="dot dot-g"></div>
-            </div>
-            <span class="terminal-title">reaper_kernel.exe</span>
-          </div>
-          <div class="terminal-body">
-            <div class="terminal-lines">
-              <div class="t-line"><span class="t-prompt">$</span> reaper init --student</div>
-              <div class="t-line t-muted">&gt; Connecting to learning environment... [OK]</div>
-              <div class="t-line t-muted">&gt; Loading curriculum modules... [OK]</div>
-              <div class="t-line">&nbsp;</div>
-              <div class="t-line t-warn">&gt; Welcome to Reaper Education.</div>
-              <div class="t-line t-warn">&gt; Your journey starts now.</div>
-              <div class="t-line t-muted">&gt; Preparing sandbox environment...</div>
-              <div class="t-line">&nbsp;</div>
-              <div class="t-line"><span class="t-prompt">$</span> enroll --free --no-credit-card</div>
-              <div class="t-line t-muted">&gt; Verifying enrollment...</div>
-              <div class="t-line t-muted">&gt; Access granted to all courses...</div>
-              <div class="t-line t-white">&gt; System ready. Begin learning.</div>
-              <div class="t-line t-cursor">_</div>
-            </div>
-          </div>
+  <!-- Hero -->
+  <div style="min-height:100vh;display:flex;align-items:center;position:relative;padding-top:128px;padding-bottom:80px">
+    <div class="hero-bg"></div>
+    <div class="container" style="width:100%">
+      <div class="hero-center">
+        <div class="badge">⚡ 10 Languages · 100 Questions · Always Free</div>
+        <h1 class="hero-title">Learn to Code.<br><span class="text-p">Prove It.</span></h1>
+        <p class="hero-desc">Reaper Education is a free coding platform with hands-on quizzes for every major programming language. Learn the concepts, then test yourself. Instant feedback. Real explanations.</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="showPage('quizzes')">Start a Quiz →</button>
+          <button class="btn-outline" onclick="goTerminal()">⌗ Open Terminal</button>
+          <button class="btn-ghost" onclick="scrollSec('section-enroll')">Enroll Free</button>
+        </div>
+        <div class="stats-row">
+          <div class="stat"><div class="stat-val">10</div><div class="stat-lbl">Languages</div></div>
+          <div class="stat"><div class="stat-val">100+</div><div class="stat-lbl">Quiz Questions</div></div>
+          <div class="stat"><div class="stat-val">14K+</div><div class="stat-lbl">Students</div></div>
+          <div class="stat"><div class="stat-val">100%</div><div class="stat-lbl">Free</div></div>
         </div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- ══════════════════════════════════════
-     PHILOSOPHY
-══════════════════════════════════════ -->
-<section class="philosophy" id="philosophy">
-  <div class="section-line-top"></div>
-  <div class="container">
-    <div class="philosophy-grid">
-      <div class="fade-in">
-        <h2>The <span class="text-primary">Philosophy.</span></h2>
-        <p>Most coding courses give you drag-and-drop builders and copy-paste tutorials. We give you real engineering challenges. Students learn by building, breaking, and rebuilding — developing the deep problem-solving instincts that employers actually look for.</p>
-        <ul class="check-list">
-          <li>
-            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-            Project-based curriculum
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-            Real-world architecture patterns
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-            Aligned with industry standards
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-            Progress tracking for educators
-          </li>
-        </ul>
+  <!-- Quiz grid -->
+  <div class="section section-dark" id="quizzes">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Pick a <span class="text-p">Language.</span></h2>
+        <p class="section-desc">Test your skills across every major coding language. Each quiz has 10 questions with instant feedback and detailed explanations.</p>
       </div>
-      <div class="stats-grid">
-        <div class="stat-card fade-in">
-          <div class="stat-icon">
-            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <div class="stat-value">14K+</div>
-          <div class="stat-label">Students Enrolled</div>
+      <div class="quiz-grid-sm" id="home-quiz-grid"></div>
+      <div style="text-align:center">
+        <button class="btn-primary" onclick="showPage('quizzes')">View All Quizzes →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- How It Works -->
+  <div class="section" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">How It <span class="text-p">Works.</span></h2>
+        <p class="section-desc">No account required to start. Pick a language, take the quiz, learn from instant explanations.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <div class="step-icon">📚</div>
+          <div class="step-title">Choose a Language</div>
+          <p class="step-desc">Pick from Python, JavaScript, TypeScript, SQL, React, Java, Go, Rust, C++, HTML/CSS — or try them all.</p>
         </div>
-        <div class="stat-card fade-in fade-in-delay-1">
-          <div class="stat-icon">
-            <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-          </div>
-          <div class="stat-value">8.4M</div>
-          <div class="stat-label">Lines of Code Written</div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <div class="step-icon">💻</div>
+          <div class="step-title">Take the Quiz</div>
+          <p class="step-desc">10 multiple-choice questions per language. Code snippets are shown where relevant. Select your answer and confirm.</p>
         </div>
-        <div class="stat-card fade-in fade-in-delay-2">
-          <div class="stat-icon">
-            <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-          </div>
-          <div class="stat-value">87%</div>
-          <div class="stat-label">Course Completion Rate</div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <div class="step-icon">🎓</div>
+          <div class="step-title">Learn Instantly</div>
+          <p class="step-desc">Every question reveals whether you were right and why — with a clear explanation so you actually understand the concept.</p>
         </div>
-        <div class="stat-card fade-in fade-in-delay-3">
-          <div class="stat-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg>
-          </div>
-          <div class="stat-value">98%</div>
-          <div class="stat-label">Student Placements</div>
+      </div>
+      <div class="code-preview">
+        <div class="code-preview-hdr">
+          <div class="dot dot-r"></div><div class="dot dot-d"></div><div class="dot dot-dd"></div>
+          <span class="code-lbl">quiz_sample.py — Reaper Education</span>
+        </div>
+        <pre><span class="c-comment"># Q3: What does this list comprehension return?</span>
+
+<span class="c-kw">result</span> = [<span class="c-var">x</span>**<span class="c-var">2</span> <span class="c-kw">for</span> <span class="c-var">x</span> <span class="c-kw">in</span> <span class="c-fn">range</span>(<span class="c-var">5</span>) <span class="c-kw">if</span> <span class="c-var">x</span> % <span class="c-var">2</span> == <span class="c-var">0</span>]
+
+<span class="c-comment"># A) [0, 4, 16]   ✓ Correct</span>
+<span class="c-comment"># B) [0, 1, 4, 9, 16]</span>
+<span class="c-comment"># C) [4, 16]</span>
+<span class="c-comment"># D) [1, 9, 25]</span>
+
+<span class="c-ok">&gt; Correct! range(5) is [0,1,2,3,4]. Filtered by x%2==0 → [0,2,4]. Squared → [0,4,16].</span></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonials -->
+  <div class="section section-dark" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Students <span class="text-p">Speak.</span></h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="tcard">
+          <div class="tcard-icon">💬</div>
+          <p class="tcard-text">"I tried three other platforms. Reaper is the only one where I actually understood why I got something wrong. The explanations are gold."</p>
+          <div class="tcard-author"><div class="tcard-name">Sarah M.</div><div class="tcard-role">Junior Backend Engineer @ Netflix</div></div>
+        </div>
+        <div class="tcard">
+          <div class="tcard-icon">💬</div>
+          <p class="tcard-text">"Our school adopted Reaper Education for our CS elective and the results have been remarkable. Students are more engaged and actually retaining concepts."</p>
+          <div class="tcard-author"><div class="tcard-name">Mr. Thompson</div><div class="tcard-role">CS Teacher, Lincoln High School</div></div>
+        </div>
+        <div class="tcard">
+          <div class="tcard-icon">💬</div>
+          <p class="tcard-text">"The quizzes feel real — not just trivia. The code snippet questions are exactly what shows up in interviews. This is the most useful free resource I've found."</p>
+          <div class="tcard-author"><div class="tcard-name">Elena R.</div><div class="tcard-role">Student, Age 17</div></div>
         </div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- ══════════════════════════════════════
-     CURRICULUMS
-══════════════════════════════════════ -->
-<section class="curriculum" id="curriculum">
-  <div class="container">
-    <div class="section-header fade-in">
-      <h2 class="section-h2">Choose Your <span class="text-primary">Track.</span></h2>
-      <p class="section-sub">Master the tools of the modern web. Every track is free, structured, and built for real learning outcomes.</p>
-    </div>
-
-    <div class="tab-row">
-      <button class="tab-btn active" data-tab="web">Frontend / UI</button>
-      <button class="tab-btn" data-tab="systems">Backend / Systems</button>
-      <button class="tab-btn" data-tab="data">Data / AI</button>
-    </div>
-
-    <div class="tracks-grid" id="tracks-container">
-      <!-- Populated by JS -->
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     TERMINAL DEMO
-══════════════════════════════════════ -->
-<section class="terminal-demo" id="terminal-demo">
-  <div class="container">
-    <div class="demo-grid">
-      <div class="fade-in">
-        <div class="code-window">
-          <div class="code-window-header">
-            <div class="code-dot-r"></div>
-            <div class="code-dot-y"></div>
-            <div class="code-dot-g"></div>
-            <span class="code-filename">lesson_01.py — ReaperEditor</span>
-          </div>
-          <div class="code-body">
-            <code>
-<span class="c-comment"># Reaper Education — Lesson 1: Foundations</span><br>
-<span class="c-comment"># Build a number guessing game from scratch</span><br>
-<br>
-<span class="c-purple">import</span> random<br>
-<br>
-<span class="c-purple">def</span> <span class="c-green">play_game</span>():<br>
-&nbsp;&nbsp;&nbsp;&nbsp;secret = random.randint(<span class="c-orange">1</span>, <span class="c-orange">100</span>)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;attempts = <span class="c-orange">0</span><br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-purple">while</span> <span class="c-orange">True</span>:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;guess = <span class="c-purple">int</span>(<span class="c-green">input</span>(<span class="c-yellow">"Your guess: "</span>))<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attempts += <span class="c-orange">1</span><br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-purple">if</span> guess == secret:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-green">print</span>(<span class="c-yellow">f"Correct in {attempts} tries!"</span>)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-purple">break</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-purple">elif</span> guess &lt; secret:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-green">print</span>(<span class="c-yellow">"Too low. Keep going."</span>)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-purple">else</span>:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-green">print</span>(<span class="c-yellow">"Too high. Try again."</span>)<br>
-<br>
-<span class="c-green">play_game</span>()
-            </code>
-          </div>
-        </div>
+  <!-- For Schools -->
+  <div class="section" id="schools">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge">🏫 Trusted by 300+ Schools</div>
+        <h2 class="section-title" style="margin-top:24px">Built for <span class="text-p">Education.</span></h2>
+        <p class="section-desc">Every feature is free for schools. Teacher dashboards, progress tracking, curriculum alignment — no budget required.</p>
       </div>
-
-      <div class="demo-content fade-in fade-in-delay-2">
-        <h2>Write <span class="text-primary">Real Code.</span></h2>
-        <p>Students don't fill in blanks. They write real programs from scratch in an in-browser environment that mirrors professional development. Every lesson builds on the last.</p>
-        <div class="feature-list">
-          <div class="feature-item">
-            <div class="feature-num">1</div>
-            <div>
-              <div class="feature-title">Hands-on from day one</div>
-              <div class="feature-desc text-muted">Every concept is reinforced with a real coding challenge.</div>
-            </div>
+      <div class="features-grid">
+        <div class="fcard"><div class="fcard-icon">📊</div><div class="fcard-title">Teacher Dashboard</div><p class="fcard-desc">Track every student's quiz scores, completion, and weak spots in real time.</p></div>
+        <div class="fcard"><div class="fcard-icon">📖</div><div class="fcard-title">Standards-Aligned</div><p class="fcard-desc">Aligns with AP CS and digital literacy standards. Drop it into any program.</p></div>
+        <div class="fcard"><div class="fcard-icon">🎓</div><div class="fcard-title">Interview-Ready</div><p class="fcard-desc">Questions mirror real technical interview patterns, preparing students for jobs and college.</p></div>
+        <div class="fcard"><div class="fcard-icon">👥</div><div class="fcard-title">Class Management</div><p class="fcard-desc">Create cohorts, assign language tracks, and manage student rosters.</p></div>
+        <div class="fcard"><div class="fcard-icon">⭐</div><div class="fcard-title">Completely Free</div><p class="fcard-desc">No licensing fees, no per-seat costs, no paywalls. Free for schools, forever.</p></div>
+        <div class="fcard"><div class="fcard-icon">⚡</div><div class="fcard-title">Zero Setup</div><p class="fcard-desc">Students start in seconds in the browser — no installs, no IT headaches.</p></div>
+      </div>
+      <div class="school-cta">
+        <div class="school-cta-grid">
+          <div>
+            <h3 class="school-cta-title">Get Your School <span class="text-p">Set Up Free.</span></h3>
+            <p style="color:var(--muted);line-height:1.6">Fill out the form and we'll get your school enrolled with a dedicated teacher dashboard and onboarding support.</p>
+            <ul class="checklist">
+              <li><span class="chk">✓</span> Full platform access — free forever</li>
+              <li><span class="chk">✓</span> Unlimited student seats</li>
+              <li><span class="chk">✓</span> Onboarding and setup support</li>
+              <li><span class="chk">✓</span> Educator dashboard from day one</li>
+            </ul>
           </div>
-          <div class="feature-item">
-            <div class="feature-num">2</div>
-            <div>
-              <div class="feature-title">Immediate feedback</div>
-              <div class="feature-desc text-muted">Automated testing shows students exactly where they went wrong.</div>
+          <div>
+            <div id="school-form">
+              <input class="form-input" id="school-name" type="text" placeholder="School Name" autocomplete="off"/>
+              <input class="form-input" id="school-email" type="email" placeholder="Educator Email" autocomplete="off"/>
+              <button class="btn-block" onclick="submitSchool()">Request School Access</button>
             </div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-num">3</div>
-            <div>
-              <div class="feature-title">Progressive difficulty</div>
-              <div class="feature-desc text-muted">Carefully sequenced projects that build confidence and skill together.</div>
+            <div class="success-box" id="school-success">
+              <div class="success-icon">✓</div>
+              <div class="success-title">Request Received</div>
+              <p class="success-desc">We'll be in touch within 24 hours.</p>
             </div>
           </div>
         </div>
-        <button class="btn-primary" onclick="scrollToSection('enroll')" style="width:100%; justify-content:center;">
-          Try the Editor Free
-          <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </button>
       </div>
     </div>
   </div>
-</section>
 
-<!-- ══════════════════════════════════════
-     INSTRUCTORS
-══════════════════════════════════════ -->
-<section class="instructors" id="instructors">
-  <div class="instructors-bg"></div>
-  <div class="container">
-    <div class="section-header fade-in">
-      <h2 class="section-h2">The <span class="text-primary">Instructors.</span></h2>
-      <p class="section-sub">Learn from engineers who have shipped production systems at the world's top tech companies. No academics — only practitioners.</p>
-    </div>
-    <div class="instructors-grid">
-      <div class="instructor-card fade-in">
-        <div class="instructor-avatar">
-          <div class="instructor-avatar-grad"></div>
-          <div class="instructor-avatar-icon">
-            <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
-          </div>
-          <div class="instructor-info">
-            <div class="instructor-exp">ex-AWS Core</div>
-            <div class="instructor-desc">Built distributed databases handling millions of requests per second.</div>
-          </div>
+  <!-- Enroll CTA -->
+  <div id="section-enroll">
+    <div class="container">
+      <div class="enroll-center">
+        <div style="font-size:56px;margin-bottom:24px">🏆</div>
+        <div class="badge">Always Free — No Catch</div>
+        <h2 class="section-title" style="margin-top:24px;font-size:clamp(42px,8vw,80px)">Start <span class="text-p">Learning.</span></h2>
+        <p class="section-desc" style="margin-bottom:48px">Reaper Education is 100% free. No credit card. No subscription. Just code, quizzes, and real learning.</p>
+        <form class="enroll-form" onsubmit="submitEnroll(event)">
+          <input class="enroll-input" id="enroll-email" type="email" placeholder="Enter Your Email Address" required/>
+          <button type="submit" class="btn-enroll-submit">Enroll for Free</button>
+        </form>
+        <div id="enroll-success" class="hidden" style="margin-bottom:40px;text-align:center">
+          <div class="enrolled-box">✓ Enrolled — Check your email.</div>
         </div>
-        <div class="instructor-name">Kaelen</div>
-        <div class="instructor-role">Systems Architect</div>
-      </div>
-      <div class="instructor-card fade-in fade-in-delay-1">
-        <div class="instructor-avatar">
-          <div class="instructor-avatar-grad"></div>
-          <div class="instructor-avatar-icon">
-            <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
-          </div>
-          <div class="instructor-info">
-            <div class="instructor-exp">ex-Vercel</div>
-            <div class="instructor-desc">Core contributor to major open source React frameworks.</div>
-          </div>
+        <div class="perks" style="margin-bottom:40px">
+          <span class="perk"><span class="perk-icon">✓</span> No Credit Card</span>
+          <span class="perk"><span class="perk-icon">✓</span> Free Forever</span>
+          <span class="perk"><span class="perk-icon">✓</span> All Quizzes Included</span>
         </div>
-        <div class="instructor-name">Voss</div>
-        <div class="instructor-role">Frontend Lead</div>
-      </div>
-      <div class="instructor-card fade-in fade-in-delay-2">
-        <div class="instructor-avatar">
-          <div class="instructor-avatar-grad"></div>
-          <div class="instructor-avatar-icon">
-            <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
-          </div>
-          <div class="instructor-info">
-            <div class="instructor-exp">ex-Stripe</div>
-            <div class="instructor-desc">Designed fraud detection ML pipelines at scale.</div>
-          </div>
-        </div>
-        <div class="instructor-name">Nova</div>
-        <div class="instructor-role">Data Engineering</div>
-      </div>
-      <div class="instructor-card fade-in fade-in-delay-3">
-        <div class="instructor-avatar">
-          <div class="instructor-avatar-grad"></div>
-          <div class="instructor-avatar-icon">
-            <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
-          </div>
-          <div class="instructor-info">
-            <div class="instructor-exp">ex-Google</div>
-            <div class="instructor-desc">Infrastructure and security engineering for global-scale platforms.</div>
-          </div>
-        </div>
-        <div class="instructor-name">Jace</div>
-        <div class="instructor-role">Security &amp; Systems</div>
+        <button class="btn-outline" style="padding:16px 40px" onclick="showPage('quizzes')">Or Start a Quiz Now →</button>
       </div>
     </div>
   </div>
-</section>
 
-<!-- ══════════════════════════════════════
-     TESTIMONIALS
-══════════════════════════════════════ -->
-<section class="testimonials" id="testimonials">
-  <div class="container">
-    <div class="testimonials-header fade-in">
-      <h2>Students <br><span class="text-primary">Speak.</span></h2>
-      <div class="testimonial-meta">
-        <div class="avatar-stack-sm">
-          <div class="avatar-sm"></div>
-          <div class="avatar-sm"></div>
-          <div class="avatar-sm"></div>
-        </div>
-        <div class="testi-caption mono text-muted">Hear from those who completed the program.</div>
-      </div>
-    </div>
-    <div class="testimonials-grid">
-      <div class="testi-card fade-in">
-        <div class="testi-icon">
-          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        </div>
-        <p class="testi-text">"I tried three other coding courses. They taught me how to make a to-do app. Reaper taught me how systems actually work at a fundamental level. I landed my first engineering job at 19."</p>
-        <div class="testi-footer">
-          <div class="testi-author">Sarah M.</div>
-          <div class="testi-role">Junior Backend Engineer @ Netflix</div>
-        </div>
-      </div>
-      <div class="testi-card fade-in fade-in-delay-1">
-        <div class="testi-icon">
-          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        </div>
-        <p class="testi-text">"Our school adopted Reaper Education for our CS elective and the results have been remarkable. Students are more engaged, more challenged, and coming out with actual portfolios."</p>
-        <div class="testi-footer">
-          <div class="testi-author">Mr. Thompson</div>
-          <div class="testi-role">CS Teacher, Lincoln High School</div>
-        </div>
-      </div>
-      <div class="testi-card fade-in fade-in-delay-2">
-        <div class="testi-icon">
-          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        </div>
-        <p class="testi-text">"The curriculum is clear, the projects are real, and every student finishes with work they're proud to show. It's the first coding platform that actually felt built for serious learners."</p>
-        <div class="testi-footer">
-          <div class="testi-author">Elena R.</div>
-          <div class="testi-role">Student, Age 17</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     FOR SCHOOLS
-══════════════════════════════════════ -->
-<section class="for-schools" id="schools">
-  <div class="for-schools-bg"></div>
-  <div class="container">
-    <div class="section-header fade-in">
-      <div class="section-badge">
-        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        <span>Trusted by 300+ Schools</span>
-      </div>
-      <h2 class="section-h2">Built for <span class="text-primary">Education.</span></h2>
-      <p class="section-sub">Reaper Education gives educators a complete, free toolkit to run a world-class computer science program — no budget required.</p>
-    </div>
-
-    <div class="school-features">
-      <div class="school-feature-card fade-in">
-        <div class="feature-icon-box">
-          <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-        </div>
-        <h3>Teacher Dashboard</h3>
-        <p>Track every student's progress, completion rates, and code quality in a single view. Identify who needs help before they fall behind.</p>
-      </div>
-      <div class="school-feature-card fade-in fade-in-delay-1">
-        <div class="feature-icon-box">
-          <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        </div>
-        <h3>Standards-Aligned Curriculum</h3>
-        <p>Our tracks align with AP Computer Science and common core digital literacy standards. Drop it into any school program immediately.</p>
-      </div>
-      <div class="school-feature-card fade-in fade-in-delay-2">
-        <div class="feature-icon-box">
-          <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-        </div>
-        <h3>Portfolio-Ready Projects</h3>
-        <p>Students graduate each module with a real project in their portfolio — something they can show colleges and future employers.</p>
-      </div>
-      <div class="school-feature-card fade-in fade-in-delay-3">
-        <div class="feature-icon-box">
-          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <h3>Class Management</h3>
-        <p>Create cohorts, assign modules, set deadlines, and manage your class roster with educator-first tools built for the classroom.</p>
-      </div>
-      <div class="school-feature-card fade-in fade-in-delay-4">
-        <div class="feature-icon-box">
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <h3>Completely Free</h3>
-        <p>No licensing fees. No per-seat costs. No hidden payments. Reaper Education is free for students and schools, forever.</p>
-      </div>
-      <div class="school-feature-card fade-in fade-in-delay-5">
-        <div class="feature-icon-box">
-          <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        </div>
-        <h3>Zero Setup</h3>
-        <p>Students start coding in seconds in a browser-based environment. No installations, no configuration, no IT headaches.</p>
-      </div>
-    </div>
-
-    <div class="school-cta-box fade-in">
-      <div class="school-cta-inner">
-        <div class="school-cta-text">
-          <h3>Get Your School <span class="text-primary">Set Up Free.</span></h3>
-          <p>Fill out the form and we'll get your school enrolled with a dedicated teacher dashboard, onboarding support, and a curriculum roadmap tailored to your students.</p>
-          <ul class="check-list">
-            <li>
-              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-              Full platform access — free forever
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-              Unlimited student seats
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-              Onboarding and setup support included
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-              Educator dashboard from day one
-            </li>
-          </ul>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="nav-logo" style="cursor:pointer;display:inline-flex" onclick="showPage('home')">
+            <div class="nav-logo-box" style="width:32px;height:32px;font-size:14px">🔥</div>
+            <span class="nav-logo-text" style="font-size:15px">Reaper Education</span>
+          </div>
+          <p class="footer-brand-desc">A free coding quiz platform for students and schools. 10 languages, 100+ questions. Always free.</p>
         </div>
         <div>
-          <form class="school-form" id="school-form">
-            <input class="form-input" type="text" id="school-name" placeholder="School Name" required />
-            <input class="form-input" type="email" id="school-email" placeholder="Educator Email Address" required />
-            <button class="btn-primary" type="submit" style="width:100%;justify-content:center;">
-              Request School Access
-            </button>
-          </form>
-          <div class="success-box" id="school-success">
-            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-            <h4>Request Received</h4>
-            <p>We'll be in touch within 24 hours to get your school set up.</p>
-          </div>
+          <div class="footer-heading">Quizzes</div>
+          <ul class="footer-links" id="footer-col-1"></ul>
+        </div>
+        <div>
+          <div class="footer-heading">More Quizzes</div>
+          <ul class="footer-links" id="footer-col-2"></ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© <span id="year"></span> REAPER EDUCATION. ALL RIGHTS RESERVED. ALWAYS FREE.</div>
+        <div class="footer-status"><div class="status-dot"></div> SYSTEMS ONLINE</div>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /page-home -->
+
+<!-- ══════════════════════════
+     QUIZ HUB PAGE
+══════════════════════════ -->
+<div id="page-quizzes" class="page">
+  <div class="page-topbar">
+    <div class="container">
+      <div class="page-topbar-inner">
+        <button class="btn-back" onclick="showPage('home')">← Back</button>
+        <div class="topbar-brand" style="cursor:pointer" onclick="showPage('home')">
+          <div class="topbar-brand-box">🔥</div>
+          <span class="topbar-brand-name">Reaper</span>
+        </div>
+        <div style="display:flex;gap:8px">
+          <button class="btn-nav-terminal" onclick="goTerminal()">⌗ Terminal</button>
+          <button class="btn-nav-enroll" onclick="showPage('home');setTimeout(()=>scrollSec('section-enroll'),80)">Enroll Free</button>
         </div>
       </div>
     </div>
   </div>
-</section>
+  <div class="container" style="padding-top:80px;padding-bottom:80px">
+    <div style="text-align:center;margin-bottom:80px">
+      <div class="badge">Free — No Login Required</div>
+      <h1 class="hero-title" style="font-size:clamp(44px,9vw,80px);margin-top:24px">Choose Your <span class="text-p">Test.</span></h1>
+      <p class="section-desc" style="margin-top:16px">10 coding languages. 10 questions each. Instant feedback and explanations. See how you stack up.</p>
+    </div>
+    <div class="quiz-grid-lg" id="hub-quiz-grid"></div>
+  </div>
+</div>
 
-<!-- ══════════════════════════════════════
-     ENROLL CTA
-══════════════════════════════════════ -->
-<section class="enroll-cta" id="enroll">
-  <div class="container">
-    <div class="enroll-inner">
-      <div class="enroll-icon fade-in">
-        <svg viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
-      </div>
-      <div class="section-badge fade-in" style="margin:0 auto 20px;">
-        <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <span>Always Free — No Catch</span>
-      </div>
-      <h2 class="fade-in">Start <span class="text-primary text-glow">Learning.</span></h2>
-      <p class="fade-in fade-in-delay-1">Reaper Education is 100% free for students and schools. No credit card. No subscription. No paywall. Just code.</p>
-
-      <form id="enroll-form" class="enroll-form fade-in fade-in-delay-2">
-        <input class="form-input" type="email" id="enroll-email" placeholder="Enter Your Email Address" required />
-        <button class="btn-primary" type="submit">Enroll for Free</button>
-      </form>
-      <div class="enroll-success" id="enroll-success">
-        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-        Enrolled — Check your email.
-      </div>
-
-      <div class="enroll-checks fade-in fade-in-delay-3">
-        <span>
-          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          No Credit Card
-        </span>
-        <span>
-          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          Free Forever
-        </span>
-        <span>
-          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          All Courses Included
-        </span>
+<!-- ══════════════════════════
+     QUIZ TAKE PAGE
+══════════════════════════ -->
+<div id="page-quiz" class="page">
+  <div class="page-topbar">
+    <div class="container">
+      <div class="page-topbar-inner">
+        <button class="btn-back" onclick="showPage('quizzes')">← Quizzes</button>
+        <div style="flex:1;max-width:400px">
+          <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="q-progress-fill"></div></div>
+          <div class="quiz-progress-lbl" id="q-progress-lbl"></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--p);flex-shrink:0">
+          🔥 <span id="q-lang-nav"></span>
+        </div>
       </div>
     </div>
   </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     FOOTER
-══════════════════════════════════════ -->
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="#hero" class="nav-logo">
-          <div class="nav-logo-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2L4 7l8 5 8-5-8-5zM4 12l8 5 8-5M4 17l8 5 8-5"/></svg>
-          </div>
-          <span class="nav-logo-text">Reaper Education</span>
-        </a>
-        <p>A free engineering education platform for students and schools who refuse to accept average outcomes. Completely free, forever.</p>
+  <div class="quiz-body">
+    <div class="quiz-q-meta">
+      <span class="q-num" id="q-num"></span>
+      <span class="q-lang-tag" id="q-lang-tag"></span>
+    </div>
+    <div class="quiz-q-text" id="q-text"></div>
+    <div class="code-block hidden" id="q-code-block">
+      <div class="code-block-hdr">
+        <div class="dot-sm dot-r"></div><div class="dot-sm dot-d"></div><div class="dot-sm dot-dd"></div>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-left:8px;text-transform:uppercase" id="q-code-lang"></span>
       </div>
-      <div class="footer-col">
-        <h4>Curriculum</h4>
-        <ul>
-          <li><button onclick="switchTabAndScroll('web')">Frontend Architecture</button></li>
-          <li><button onclick="switchTabAndScroll('systems')">Systems Programming</button></li>
-          <li><button onclick="switchTabAndScroll('data')">Data Engineering</button></li>
-          <li><button onclick="scrollToSection('terminal-demo')">Code Editor</button></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Platform</h4>
-        <ul>
-          <li><button onclick="scrollToSection('schools')">For Schools</button></li>
-          <li><button onclick="scrollToSection('instructors')">Instructors</button></li>
-          <li><button onclick="scrollToSection('enroll')">Enroll Free</button></li>
-          <li><button onclick="scrollToSection('philosophy')">Our Philosophy</button></li>
-        </ul>
+      <pre id="q-code-pre"></pre>
+    </div>
+    <div class="quiz-options" id="q-options"></div>
+    <div class="quiz-action-row">
+      <button class="btn-confirm wait" id="btn-confirm" onclick="confirmAns()">Confirm Answer</button>
+      <button class="btn-next" id="btn-next" onclick="nextQ()"></button>
+    </div>
+    <div class="expl-box" id="expl-box">
+      <div class="expl-inner">
+        <div class="expl-icon" id="expl-icon"></div>
+        <div>
+          <div class="expl-label" id="expl-label"></div>
+          <div class="expl-text" id="expl-text"></div>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <div class="copy">&copy; <span id="year"></span> REAPER EDUCATION. ALL RIGHTS RESERVED. ALWAYS FREE.</div>
-      <div class="status"><span class="status-dot"></span> SYSTEMS ONLINE</div>
+    <div class="quiz-dots" id="q-dots"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════
+     RESULTS PAGE
+══════════════════════════ -->
+<div id="page-results" class="page">
+  <div class="page-topbar">
+    <div class="container">
+      <div class="page-topbar-inner">
+        <button class="btn-back" onclick="showPage('quizzes')">← All Quizzes</button>
+        <div class="topbar-brand" style="cursor:pointer" onclick="showPage('home')">
+          <div class="topbar-brand-box">🔥</div>
+          <span class="topbar-brand-name">Reaper</span>
+        </div>
+        <button class="btn-outline-crimson" style="padding:8px 16px;font-size:11px" onclick="restartQuiz()">↺ Retry</button>
+      </div>
     </div>
   </div>
-</footer>
+  <div class="results-body">
+    <div class="results-hero">
+      <div class="results-trophy">🏆</div>
+      <div class="results-score" id="r-score"></div>
+      <div class="results-grade" id="r-grade"></div>
+      <p class="results-sub" id="r-sub"></p>
+    </div>
+    <div class="review-label">Review Your Answers</div>
+    <div id="r-review"></div>
+    <div class="results-cta">
+      <h3>Keep Going.</h3>
+      <p>Now practice what you learned — write real code in the Reaper terminal, or take another quiz.</p>
+      <div class="results-btns">
+        <button class="btn-crimson" onclick="goTerminal()">⌗ Open Terminal</button>
+        <button class="btn-outline-crimson" onclick="showPage('quizzes')">Try Another Quiz →</button>
+        <button class="btn-outline-crimson" onclick="showPage('home');setTimeout(()=>scrollSec('section-enroll'),80)">Enroll Free →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════
+     PLAYGROUND PAGE
+══════════════════════════ -->
+<div id="page-playground" class="page">
+  <div class="pg-topbar">
+    <div class="pg-topbar-inner">
+      <div class="pg-left">
+        <button class="btn-back" onclick="pgGoHome()" style="font-size:11px">← Home</button>
+        <div class="pg-div"></div>
+        <div class="pg-brand">
+          <span class="pg-brand-icon">🔥</span>
+          <span class="pg-brand-name">Reaper Terminal</span>
+        </div>
+      </div>
+      <div class="pg-center">
+        <button class="lang-btn" id="lang-btn" onclick="toggleLangDD()">
+          <span id="lang-btn-label">Python</span> ▾
+        </button>
+        <div class="lang-dropdown" id="lang-dd"></div>
+      </div>
+      <div class="pg-right">
+        <button class="pg-icon-btn" title="Copy code" onclick="pgCopy()">⎘</button>
+        <button class="pg-icon-btn" title="Reset starter code" onclick="pgReset()">↺</button>
+        <button class="btn-run" id="btn-run" onclick="pgRun()">▶ Run</button>
+      </div>
+    </div>
+  </div>
+  <div class="pg-body">
+    <div class="editor-panel">
+      <div class="editor-topbar">
+        <span class="editor-fn" id="editor-filename">main.py</span>
+        <span class="editor-hint">Ctrl+Enter to run</span>
+      </div>
+      <div class="editor-area">
+        <div class="line-nums" id="line-nums"></div>
+        <textarea class="editor-ta" id="editor-ta" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"></textarea>
+      </div>
+    </div>
+    <div class="output-panel">
+      <div class="output-topbar">
+        <div style="display:flex;align-items:center;gap:8px"><span style="color:rgba(220,20,60,.6);font-size:14px">⌗</span><span class="output-title">Output</span></div>
+        <button class="btn-clear" onclick="pgClearOutput()">Clear</button>
+      </div>
+      <div class="output-body" id="output-body"></div>
+    </div>
+  </div>
+  <div class="pg-statusbar">
+    <div class="pg-status-side">
+      <span class="pg-status-txt" id="pg-runtime-lbl">Python 3.10.0</span>
+      <span class="pg-status-txt">Powered by Piston API</span>
+    </div>
+    <div class="pg-status-side">
+      <div class="pg-ready"><div class="ready-dot"></div> Ready</div>
+    </div>
+  </div>
+</div>
 
 <script src="script.js"></script>
 </body>
